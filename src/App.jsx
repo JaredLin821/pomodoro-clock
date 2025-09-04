@@ -1,34 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Display from './Display/UI/display'
+import useTimerLogic from './Timer Logic/timerLogic';
+
 
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+  // inital states for timer = 40 minutes, break time = 5 minutes
+    const [time, setTime] = useState(40 * 60);
+    const [isRunning, setIsRunning] = useState(false);
+    const [breakTime, setBreakTime] = useState(5 * 60);
+
+    const startTimer = () => {
+        setIsRunning(true);
+    };
+    
+    const pauseTimer = () => {
+        setIsRunning(false);
+    };
+    const resetTimer = () => {
+        setIsRunning(false);
+        setTime(40 * 60);
+    }
+
+useTimerLogic(isRunning, setTime);  
+
+
+return (
+  <>
+    <div>
+      <Display time={time} />
+    </div>
+  </>
   )
 }
 

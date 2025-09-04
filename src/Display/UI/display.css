@@ -1,0 +1,18 @@
+.display-container {
+  background: #333;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.time-display {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.controls button {
+  margin: 0 0.5rem;
+}
+
