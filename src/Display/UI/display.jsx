@@ -1,13 +1,12 @@
 import React from 'react';
 import './display.css';
 
-
-function Display({ time, onStart, onPause, onReset, mode }) {
+function Display({ time, onStart, onPause, onReset, mode, cycleCount }) {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
     return (
-        <div className="display-container">
+        <><div className="display-container">
             <h1>Pomodoro Timer</h1>
             <div className="time-display">
                 <span className={mode === 'work' ? "work" : "break"}>
@@ -23,6 +22,12 @@ function Display({ time, onStart, onPause, onReset, mode }) {
                 <button className="reset-btn" onClick={onReset}>Reset</button>
             </div>
         </div>
+        
+        <div>
+            <h6 className="cycleCounter">Amount of Cycles: {cycleCount}</h6>
+        </div>
+            
+    </>
     );
 }
 

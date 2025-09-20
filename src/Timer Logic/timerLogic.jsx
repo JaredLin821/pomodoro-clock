@@ -1,8 +1,7 @@
 import {useEffect} from "react";
-import App from "../App.jsx";
 
+function useTimerLogic(isRunning, setTime, mode, setMode, breakTime, cycleCount, setCycleCount) {
 
-function useTimerLogic(isRunning, setTime, mode, setMode, breakTime) {
     useEffect(() => {
         if(!isRunning) return;
         const interval = setInterval(() => {
@@ -12,6 +11,7 @@ function useTimerLogic(isRunning, setTime, mode, setMode, breakTime) {
                 }else{
                     if (mode === "work") {
                         setMode('break');
+                        setCycleCount(prevCount => prevCount + 1); // Increment cycle count
                         return breakTime; // switch to break time
                     } else {
                         setMode('work');
@@ -21,7 +21,7 @@ function useTimerLogic(isRunning, setTime, mode, setMode, breakTime) {
             })
         }, 1000);
         return () => clearInterval(interval);
-    }, [isRunning, setTime, mode, setMode, breakTime] );
+    }, [isRunning, setTime, mode, setMode, breakTime, setCycleCount] );
 };
 
 export default useTimerLogic;
